@@ -88,11 +88,13 @@ void	cppCreator(std::string className) {
 }
 
 int	main(int ac, char **av) {
-	if (ac != 2)
-		std::cout << "This need only one parameter: [ClassName].\n";
+	if (ac < 2)
+		std::cout << "This need at least one parameter: ClassName + [ClassName2] + ...\n";
 	else {
-		hppCreator(av[1]);
-		cppCreator(av[1]);
+		for (int i = 1; i < ac; i++) {
+			hppCreator(av[i]);
+			cppCreator(av[i]);
+		}
 	}
 	return (0);
 }
