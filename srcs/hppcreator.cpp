@@ -68,32 +68,12 @@ void	hppCreator(std::string className) {
 	file.close();
 }
 
-void	cppCreator(std::string className) {
-
-	std::ofstream	file(className + ".cpp");
-
-	setHeader(file, className, ".cpp");
-	file << std::endl;
-	file << "#include \"" << className << ".hpp\"\n";
-	file << std::endl;
-	file << className << "::" << className << "(void) {}\n";
-	file << std::endl;
-	file << className << "::" << className << "(const " << className << " &other) {}\n";
-	file << std::endl;
-	file << className << "::" << "~" << className << "(void) {}\n";
-	file << std::endl;
-	file << className << "	&" << className << "::operator=(const " << className << "& other) {\n";
-	file << "	return (*this);\n";
-	file << "}\n";
-}
-
 int	main(int ac, char **av) {
 	if (ac < 2)
 		std::cout << "This need at least one parameter: ClassName + [ClassName2] + ...\n";
 	else {
 		for (int i = 1; i < ac; i++) {
 			hppCreator(av[i]);
-			cppCreator(av[i]);
 		}
 	}
 	return (0);

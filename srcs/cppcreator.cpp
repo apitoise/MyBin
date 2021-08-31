@@ -45,29 +45,6 @@ void	setHeader(std::ostream &file, std::string className, std::string file_type)
 
 }
 
-void	hppCreator(std::string className) {
-	std::ofstream	file(className + ".hpp");
-
-	setHeader(file, className, ".hpp");
-	file << std::endl;
-	file << "#ifndef " << upperName(className) << "_HPP\n";
-	file << "# define " << upperName(className) << "_HPP\n";
-	file << std::endl;
-	file << "# include <iostream>\n";
-	file << std::endl;
-	file << "class	" << className << std::endl;
-	file << "{\n";
-	file << "	public:\n\n";
-	file << "		" << className << "(void);\n";
-	file << "		" << className << "(const " << className << " &other);\n";
-	file << "		" << "~" << className << "(void);\n";
-	file << "		" << className << "	&operator=(const " << className << " &other);\n";
-	file << "};\n";
-	file << std::endl;
-	file << "#endif\n";
-	file.close();
-}
-
 void	cppCreator(std::string className) {
 
 	std::ofstream	file(className + ".cpp");
@@ -92,7 +69,6 @@ int	main(int ac, char **av) {
 		std::cout << "This need at least one parameter: ClassName + [ClassName2] + ...\n";
 	else {
 		for (int i = 1; i < ac; i++) {
-			hppCreator(av[i]);
 			cppCreator(av[i]);
 		}
 	}
